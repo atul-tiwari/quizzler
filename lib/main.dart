@@ -25,6 +25,22 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+   int question_num =1;
+   List<Icon> scoreKeeper =[];
+   List<String> Question =[
+     'Cyclones spin in a clockwise direction in the southern hemisphere',
+     'Goldfish only have a memory of three seconds',
+     'The capital of Libya is Benghazi',
+     'Dolly Parton is the godmother of Miley Cyrus',
+     'Roger Federer has won the most Wimbledon titles of any player',
+     'An octopus has five hearts',
+     'Brazil is the only country in the Americas to have the official language of Portuguese',
+     'The Channel Tunnel is the longest rail tunnel in the world',
+     'Darth Vader famously says the line “Luke, I am your father” in The Empire Strikes Back',
+     'Olivia Newton-John represented the UK in the Eurovision Song Contest in 1974, the year ABBA won with “Waterloo”',
+   ];
+
+   List<bool> Answers = [true , false , false , true , false , false , true, false, false , true];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -84,7 +100,9 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
         ),
-        //TODO: Add a Row here as your score keeper
+        Row(
+          children: scoreKeeper,
+        ),
       ],
     );
   }
