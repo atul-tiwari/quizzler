@@ -29,7 +29,24 @@ class _QuizPageState extends State<QuizPage> {
 
    List<Icon> scoreKeeper =[];
 
-  String Que = QuestionBank.getQuestion();
+   String Que = QuestionBank.getQuestion();
+   int num = QuestionBank.questionNumber +1;
+
+   Icon genIcon(bool result){
+     if (result){
+       return Icon(
+         Icons.check,
+         color: Colors.green,
+       );
+     }
+     else{
+       return Icon(
+         Icons.close,
+         color: Colors.red,
+       );
+     }
+   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +54,13 @@ class _QuizPageState extends State<QuizPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
+        Text(
+          'Question $num',
+          style: TextStyle(
+            fontSize: 30,
+            color: Colors.white,
+          ),
+        ),
         Expanded(
           flex: 5,
           child: Padding(
@@ -67,11 +91,12 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                print(QuestionBank.checkAns(true));
+                scoreKeeper.add(genIcon(QuestionBank.checkAns(false)));
                 bool res = QuestionBank.nextQuestion();
                 if (res) {
                 setState(() {
                   Que = QuestionBank.getQuestion();
+                  num++;
                 });
               }},
             ),
@@ -90,11 +115,12 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                print(QuestionBank.checkAns(false));
+                scoreKeeper.add(genIcon(QuestionBank.checkAns(false)));
                 bool res = QuestionBank.nextQuestion();
                 if (res) {
                  setState(() {
                    Que = QuestionBank.getQuestion();
+                   num++;
                  });
                 }
               },
