@@ -10,4 +10,7 @@ class Quession {
   bool checkAnser (bool userAns){
     return (userAns == _ans)? true : false;
   }
+  String getQuestion(){
+    return _question;
+  }
 }

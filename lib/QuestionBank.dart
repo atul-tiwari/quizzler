@@ -4,7 +4,6 @@ class QuestionBank{
 
   static List<Quession> _Questionbank = [
 
-    Quession ('Cyclones spin in a clockwise direction in the southern hemisphere',true),
   Quession('Cyclones spin in a clockwise direction in the southern hemisphere',false),
   Quession('Goldfish only have a memory of three seconds',false),
   Quession('The capital of Libya is Benghazi',true),
@@ -21,5 +20,17 @@ class QuestionBank{
   static bool checkAns(bool yourAns){
 
   return _Questionbank[questionNumber].checkAnser(yourAns);
+  }
+
+  static bool nextQuestion(){
+    if (_Questionbank.length > questionNumber + 1 ){
+      questionNumber++;
+      return true;
+    }
+    return false;
+  }
+
+  static String getQuestion(){
+    return _Questionbank[questionNumber].getQuestion();
   }
 }

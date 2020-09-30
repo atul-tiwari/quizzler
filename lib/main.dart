@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'QuestionBank.dart';
 
 void main() => runApp(Quizzler());
 
@@ -25,10 +26,10 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-   int question_num =1;
+
    List<Icon> scoreKeeper =[];
 
-
+  String Que = QuestionBank.getQuestion();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                Que,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -66,8 +67,13 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked true.
-              },
+                print(QuestionBank.checkAns(true));
+                bool res = QuestionBank.nextQuestion();
+                if (res) {
+                setState(() {
+                  Que = QuestionBank.getQuestion();
+                });
+              }},
             ),
           ),
         ),
@@ -84,7 +90,13 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked false.
+                print(QuestionBank.checkAns(false));
+                bool res = QuestionBank.nextQuestion();
+                if (res) {
+                 setState(() {
+                   Que = QuestionBank.getQuestion();
+                 });
+                }
               },
             ),
           ),
